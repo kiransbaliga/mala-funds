@@ -1,26 +1,65 @@
 import { MongoClient, Db } from 'mongodb';
+import fs from 'fs';
+import path from 'path';
 
 const MONGODB_URI = process.env.MONGODB_URI || process.env.DATABASE_URL || 'mongodb+srv://kiransbaliga_db_user:Zn1zz0G6eYk7dscC@cluster0.ha5ofnz.mongodb.net/mala_funds?retryWrites=true&w=majority&appName=Cluster0';
 
-let cachedClient: MongoClient | null = null;
-let cachedDb: Db | null = null;
+// Global caching for Vercel serverless environments
+declare global {
+  // eslint-disable-next-line no-var
+  var _mongoClientPromise: Promise<MongoClient> | undefined;
+}
 
-export async function getMongoDb(): Promise<Db> {
-  if (cachedDb && cachedClient) {
-    return cachedDb;
+let clientPromise: Promise<MongoClient> | null = null;
+
+export function getMongoClientPromise(): Promise<MongoClient> {
+  if (process.env.NODE_ENV === 'development') {
+    if (!global._mongoClientPromise) {
+      const client = new MongoClient(MONGODB_URI, {
+        maxPoolSize: 10,
+        serverSelectionTimeoutMS: 5000,
+        connectTimeoutMS: 10000,
+        tls: true,
+      });
+      global._mongoClientPromise = client.connect();
+    }
+    return global._mongoClientPromise;
+  } else {
+    if (!clientPromise) {
+      const client = new MongoClient(MONGODB_URI, {
+        maxPoolSize: 10,
+        serverSelectionTimeoutMS: 5000,
+        connectTimeoutMS: 10000,
+        tls: true,
+      });
+      clientPromise = client.connect();
+    }
+    return clientPromise;
   }
+}
 
-  const client = new MongoClient(MONGODB_URI, {
-    maxPoolSize: 10,
-    serverSelectionTimeoutMS: 5000,
-  });
+export async function getMongoDb(): Promise<Db | null> {
+  try {
+    const client = await getMongoClientPromise();
+    return client.db('mala_funds');
+  } catch (error) {
+    console.warn('[MongoDB Warning] Could not connect to MongoDB Atlas:', error);
+    return null;
+  }
+}
 
-  await client.connect();
-  const db = client.db('mala_funds');
-
-  cachedClient = client;
-  cachedDb = db;
-  return db;
+// Fallback JSON loader for zero-downtime resilience
+function getFallbackProjects(): any[] {
+  try {
+    const jsonPath = path.join(process.cwd(), 'data', 'resolved_projects.json');
+    if (fs.existsSync(jsonPath)) {
+      const raw = fs.readFileSync(jsonPath, 'utf-8');
+      return JSON.parse(raw);
+    }
+  } catch (e) {
+    console.error('Error reading fallback JSON:', e);
+  }
+  return [];
 }
 
 export interface ProjectListItem {
@@ -155,102 +194,182 @@ export async function getAllProjects(filters?: {
   offset?: number;
 }): Promise<{ projects: ProjectListItem[]; total: number }> {
   const db = await getMongoDb();
-  const collection = db.collection('projects');
+  let docs: any[] = [];
+  let total = 0;
 
-  const query: any = {};
+  if (db) {
+    try {
+      const collection = db.collection('projects');
+      const query: any = {};
 
-  if (filters?.q) {
-    const regex = new RegExp(filters.q, 'i');
-    query.$or = [
-      { canonical_name: regex },
-      { location_text: regex },
-      { grama_panchayat: regex },
-      { description: regex },
-      { category: regex },
-      { scheme_original: regex }
-    ];
+      if (filters?.q) {
+        const regex = new RegExp(filters.q, 'i');
+        query.$or = [
+          { canonical_name: regex },
+          { location_text: regex },
+          { grama_panchayat: regex },
+          { description: regex },
+          { category: regex },
+          { scheme_original: regex }
+        ];
+      }
+
+      if (filters?.year) query.financial_year = filters.year;
+      if (filters?.scheme) query.scheme_normalized = filters.scheme;
+      if (filters?.panchayat) {
+        const pRegex = new RegExp(filters.panchayat, 'i');
+        query.$or = [{ grama_panchayat: pRegex }, { local_body: pRegex }];
+      }
+      if (filters?.ward) query.ward = new RegExp(filters.ward, 'i');
+      if (filters?.category) query.category = filters.category;
+      if (filters?.status) query.status = filters.status;
+      if (filters?.confidence) query.confidence_level = filters.confidence.toUpperCase();
+
+      total = await collection.countDocuments(query);
+
+      let sort: any = { financial_year: -1, created_at: -1 };
+      if (filters?.sortBy === 'amount-desc') sort = { tender_value: -1, estimated_value: -1 };
+      else if (filters?.sortBy === 'amount-asc') sort = { tender_value: 1, estimated_value: 1 };
+      else if (filters?.sortBy === 'name') sort = { canonical_name: 1 };
+
+      const limit = filters?.limit || 50;
+      const offset = filters?.offset || 0;
+
+      docs = await collection.find(query).sort(sort).skip(offset).limit(limit).toArray();
+    } catch (err) {
+      console.warn('MongoDB query failed, using local fallback:', err);
+      docs = [];
+    }
   }
 
-  if (filters?.year) {
-    query.financial_year = filters.year;
+  // Fallback to local JSON if MongoDB is unavailable or empty
+  if (!docs || docs.length === 0) {
+    const rawFallback = getFallbackProjects();
+    let filtered = rawFallback;
+
+    if (filters?.q) {
+      const term = filters.q.toLowerCase();
+      filtered = filtered.filter(p =>
+        (p.canonical_name || '').toLowerCase().includes(term) ||
+        (p.location_text || '').toLowerCase().includes(term) ||
+        (p.grama_panchayat || '').toLowerCase().includes(term) ||
+        (p.description || '').toLowerCase().includes(term)
+      );
+    }
+    if (filters?.year) filtered = filtered.filter(p => p.financial_year === filters.year);
+    if (filters?.scheme) filtered = filtered.filter(p => p.scheme_normalized === filters.scheme);
+    if (filters?.panchayat) filtered = filtered.filter(p => (p.grama_panchayat || '').toLowerCase().includes(filters.panchayat!.toLowerCase()));
+    if (filters?.ward) filtered = filtered.filter(p => (p.ward || '').toLowerCase().includes(filters.ward!.toLowerCase()));
+    if (filters?.category) filtered = filtered.filter(p => p.category === filters.category);
+    if (filters?.status) filtered = filtered.filter(p => p.status === filters.status);
+    if (filters?.confidence) filtered = filtered.filter(p => (p.confidence_level || '').toUpperCase() === filters.confidence!.toUpperCase());
+
+    total = filtered.length;
+    const offset = filters?.offset || 0;
+    const limit = filters?.limit || 50;
+    docs = filtered.slice(offset, offset + limit);
   }
 
-  if (filters?.scheme) {
-    query.scheme_normalized = filters.scheme;
-  }
+  const projects: ProjectListItem[] = docs.map((doc: any) => {
+    const sanctionAmt = doc.sanctioned_amount ?? doc.sanction?.sanctioned_amount ?? null;
+    const tenderVal = doc.tender_value ?? doc.tender?.tender_value ?? null;
+    const estVal = doc.estimated_value ?? doc.tender?.estimated_value ?? null;
+    const paidAmt = doc.paid_amount ?? (doc.payments?.reduce((acc: number, p: any) => acc + (p.amount || 0), 0) || null);
+    const sourcesList = doc.sources || [];
+    const sourcesSummary = doc.sources_summary || Array.from(new Set(sourcesList.map((s: any) => s.source_system))).join(',');
 
-  if (filters?.panchayat) {
-    const pRegex = new RegExp(filters.panchayat, 'i');
-    query.$or = [{ grama_panchayat: pRegex }, { local_body: pRegex }];
-  }
-
-  if (filters?.ward) {
-    query.ward = new RegExp(filters.ward, 'i');
-  }
-
-  if (filters?.category) {
-    query.category = filters.category;
-  }
-
-  if (filters?.status) {
-    query.status = filters.status;
-  }
-
-  if (filters?.confidence) {
-    query.confidence_level = filters.confidence.toUpperCase();
-  }
-
-  const total = await collection.countDocuments(query);
-
-  let sort: any = { financial_year: -1, created_at: -1 };
-  if (filters?.sortBy === 'amount-desc') {
-    sort = { tender_value: -1, estimated_value: -1 };
-  } else if (filters?.sortBy === 'amount-asc') {
-    sort = { tender_value: 1, estimated_value: 1 };
-  } else if (filters?.sortBy === 'name') {
-    sort = { canonical_name: 1 };
-  }
-
-  const limit = filters?.limit || 50;
-  const offset = filters?.offset || 0;
-
-  const docs = await collection.find(query).sort(sort).skip(offset).limit(limit).toArray();
-
-  const projects = docs.map((doc: any) => ({
-    id: doc.id || doc._id,
-    canonical_name: doc.canonical_name,
-    description: doc.description,
-    financial_year: doc.financial_year,
-    district: doc.district || 'Thrissur',
-    assembly_constituency: doc.assembly_constituency || 'Kodungallur LAC',
-    local_body: doc.local_body,
-    block_panchayat: doc.block_panchayat,
-    grama_panchayat: doc.grama_panchayat,
-    ward: doc.ward,
-    village: doc.village,
-    location_text: doc.location_text,
-    scheme_normalized: doc.scheme_normalized,
-    scheme_original: doc.scheme_original,
-    mla_name: doc.mla_name,
-    category: doc.category || 'Other',
-    confidence_level: doc.confidence_level || 'MEDIUM',
-    status: doc.status || 'Proposed',
-    discrepancy_summary: doc.discrepancy_summary,
-    sanctioned_amount: doc.sanctioned_amount ?? null,
-    tender_value: doc.tender_value ?? null,
-    estimated_value: doc.estimated_value ?? null,
-    paid_amount: doc.paid_amount ?? null,
-    source_count: doc.source_count || (doc.sources?.length ?? 1),
-    sources_summary: doc.sources_summary || ''
-  }));
+    return {
+      id: doc.id || doc._id,
+      canonical_name: doc.canonical_name,
+      description: doc.description,
+      financial_year: doc.financial_year,
+      district: doc.district || 'Thrissur',
+      assembly_constituency: doc.assembly_constituency || 'Kodungallur LAC',
+      local_body: doc.local_body,
+      block_panchayat: doc.block_panchayat,
+      grama_panchayat: doc.grama_panchayat,
+      ward: doc.ward,
+      village: doc.village,
+      location_text: doc.location_text,
+      scheme_normalized: doc.scheme_normalized,
+      scheme_original: doc.scheme_original,
+      mla_name: doc.mla_name,
+      category: doc.category || 'Other',
+      confidence_level: doc.confidence_level || 'MEDIUM',
+      status: doc.status || 'Proposed',
+      discrepancy_summary: doc.discrepancy_summary,
+      sanctioned_amount: sanctionAmt,
+      tender_value: tenderVal,
+      estimated_value: estVal,
+      paid_amount: paidAmt,
+      source_count: doc.source_count || (sourcesList.length || 1),
+      sources_summary: sourcesSummary
+    };
+  });
 
   return { projects, total };
 }
 
 export async function getProjectById(id: string): Promise<ProjectDetail | null> {
   const db = await getMongoDb();
-  const doc: any = await db.collection('projects').findOne({ $or: [{ id }, { _id: id as any }] });
+  let doc: any = null;
+
+  if (db) {
+    try {
+      doc = await db.collection('projects').findOne({ $or: [{ id }, { _id: id as any }] });
+    } catch (err) {
+      console.warn('MongoDB findOne error:', err);
+    }
+  }
+
+  if (!doc) {
+    const raw = getFallbackProjects();
+    doc = raw.find(p => p.id === id);
+  }
+
   if (!doc) return null;
+
+  const sanctionAmt = doc.sanctioned_amount ?? doc.sanction?.sanctioned_amount ?? null;
+  const tenderVal = doc.tender_value ?? doc.tender?.tender_value ?? null;
+  const estVal = doc.estimated_value ?? doc.tender?.estimated_value ?? null;
+  const paidAmt = doc.paid_amount ?? (doc.payments?.reduce((acc: number, p: any) => acc + (p.amount || 0), 0) || null);
+  const sourcesList = doc.sources || [];
+  const sourcesSummary = doc.sources_summary || Array.from(new Set(sourcesList.map((s: any) => s.source_system))).join(',');
+
+  const sanctions = doc.sanctions || (doc.sanction ? [{
+    id: `${doc.id}_sanc_1`,
+    as_number: doc.sanction.as_number,
+    as_date: doc.sanction.as_date,
+    ts_number: doc.sanction.ts_number,
+    ts_date: doc.sanction.ts_date,
+    sanctioned_amount: doc.sanction.sanctioned_amount,
+    funding_head: doc.sanction.funding_head
+  }] : []);
+
+  const plans = doc.plans || (doc.plan ? [{
+    id: `${doc.id}_plan_1`,
+    planned_amount: doc.plan.planned_amount,
+    approved_amount: doc.plan.approved_amount,
+    revised_amount: doc.plan.revised_amount,
+    plan_year: doc.plan.plan_year,
+    sector: doc.plan.sector,
+    status: doc.plan.status
+  }] : []);
+
+  const tenders = doc.tenders || (doc.tender ? [{
+    id: `${doc.id}_tnd_1`,
+    tender_id: doc.tender.tender_id,
+    tender_reference: doc.tender.tender_reference,
+    estimated_value: doc.tender.estimated_value,
+    tender_value: doc.tender.tender_value,
+    published_date: doc.tender.published_date,
+    bid_opening_date: doc.tender.bid_opening_date,
+    award_date: doc.tender.award_date,
+    contractor: doc.tender.contractor,
+    nit_url: doc.tender.nit_url,
+    boq_url: doc.tender.boq_url,
+    status: doc.tender.status
+  }] : []);
 
   return {
     id: doc.id || doc._id,
@@ -272,13 +391,13 @@ export async function getProjectById(id: string): Promise<ProjectDetail | null> 
     confidence_level: doc.confidence_level || 'MEDIUM',
     status: doc.status || 'Proposed',
     discrepancy_summary: doc.discrepancy_summary,
-    sanctioned_amount: doc.sanctioned_amount ?? null,
-    tender_value: doc.tender_value ?? null,
-    estimated_value: doc.estimated_value ?? null,
-    paid_amount: doc.paid_amount ?? null,
-    source_count: doc.source_count || (doc.sources?.length ?? 1),
-    sources_summary: doc.sources_summary || '',
-    sources: (doc.sources || []).map((s: any, idx: number) => ({
+    sanctioned_amount: sanctionAmt,
+    tender_value: tenderVal,
+    estimated_value: estVal,
+    paid_amount: paidAmt,
+    source_count: doc.source_count || (sourcesList.length || 1),
+    sources_summary: sourcesSummary,
+    sources: sourcesList.map((s: any, idx: number) => ({
       id: s.id || `${doc.id}_src_${idx + 1}`,
       source_system: s.source_system,
       source_record_id: s.source_record_id,
@@ -289,21 +408,20 @@ export async function getProjectById(id: string): Promise<ProjectDetail | null> 
       is_directly_reported: s.is_directly_reported ?? true,
       raw_payload_path: s.raw_payload_path || null
     })),
-    sanctions: doc.sanctions || [],
-    plans: doc.plans || [],
-    tenders: doc.tenders || [],
-    executions: doc.executions || [],
+    sanctions,
+    plans,
+    tenders,
+    executions: doc.executions || [{ progress_percent: doc.status === 'Completed' ? 100 : 50, status: doc.status }],
     payments: doc.payments || [],
-    engineering_records: doc.engineering_records || [],
-    governance_records: doc.governance_records || [],
+    engineering_records: doc.engineering_records || doc.engineering || [],
+    governance_records: doc.governance_records || doc.governance || [],
     audit_records: doc.audit_records || []
   };
 }
 
 export async function getStats() {
-  const db = await getMongoDb();
-  const collection = db.collection('projects');
-  const allDocs = await collection.find({}).toArray();
+  const { projects } = await getAllProjects({ limit: 500 });
+  const allDocs = projects;
 
   const totalProjects = allDocs.length;
   const completedProjects = allDocs.filter(d => d.status === 'Completed').length;
@@ -317,7 +435,9 @@ export async function getStats() {
 
   const allSystems = new Set<string>();
   allDocs.forEach(d => {
-    (d.sources || []).forEach((s: any) => allSystems.add(s.source_system));
+    (d.sources_summary || '').split(',').forEach((sys: string) => {
+      if (sys.trim()) allSystems.add(sys.trim());
+    });
   });
 
   return {
@@ -343,29 +463,21 @@ export interface YearStat {
 }
 
 export async function getStatsByYear(): Promise<YearStat[]> {
-  const db = await getMongoDb();
-  const collection = db.collection('projects');
-  const pipeline = [
-    {
-      $group: {
-        _id: '$financial_year',
-        projectCount: { $sum: 1 },
-        sanctioned: { $sum: { $ifNull: ['$sanctioned_amount', 0] } },
-        tendered: { $sum: { $ifNull: ['$tender_value', 0] } },
-        spent: { $sum: { $ifNull: ['$paid_amount', 0] } }
-      }
-    },
-    { $sort: { _id: 1 } }
-  ];
+  const { projects } = await getAllProjects({ limit: 500 });
+  const map: Record<string, YearStat> = {};
 
-  const results = await collection.aggregate(pipeline).toArray();
-  return results.map((r: any) => ({
-    year: r._id,
-    projectCount: r.projectCount,
-    sanctioned: r.sanctioned,
-    tendered: r.tendered,
-    spent: r.spent
-  }));
+  projects.forEach(p => {
+    const yr = p.financial_year || 'Unknown';
+    if (!map[yr]) {
+      map[yr] = { year: yr, projectCount: 0, sanctioned: 0, tendered: 0, spent: 0 };
+    }
+    map[yr].projectCount += 1;
+    map[yr].sanctioned += p.sanctioned_amount || 0;
+    map[yr].tendered += p.tender_value || 0;
+    map[yr].spent += p.paid_amount || 0;
+  });
+
+  return Object.values(map).sort((a, b) => a.year.localeCompare(b.year));
 }
 
 export interface PanchayatStat {
@@ -377,29 +489,21 @@ export interface PanchayatStat {
 }
 
 export async function getStatsByPanchayat(): Promise<PanchayatStat[]> {
-  const db = await getMongoDb();
-  const collection = db.collection('projects');
-  const pipeline = [
-    {
-      $group: {
-        _id: { $ifNull: ['$grama_panchayat', '$local_body'] },
-        projectCount: { $sum: 1 },
-        sanctioned: { $sum: { $ifNull: ['$sanctioned_amount', 0] } },
-        tendered: { $sum: { $ifNull: ['$tender_value', 0] } },
-        spent: { $sum: { $ifNull: ['$paid_amount', 0] } }
-      }
-    },
-    { $sort: { projectCount: -1 } }
-  ];
+  const { projects } = await getAllProjects({ limit: 500 });
+  const map: Record<string, PanchayatStat> = {};
 
-  const results = await collection.aggregate(pipeline).toArray();
-  return results.map((r: any) => ({
-    name: r._id || 'Other',
-    projectCount: r.projectCount,
-    sanctioned: r.sanctioned,
-    tendered: r.tendered,
-    spent: r.spent
-  }));
+  projects.forEach(p => {
+    const name = p.grama_panchayat || p.local_body || 'Other';
+    if (!map[name]) {
+      map[name] = { name, projectCount: 0, sanctioned: 0, tendered: 0, spent: 0 };
+    }
+    map[name].projectCount += 1;
+    map[name].sanctioned += p.sanctioned_amount || 0;
+    map[name].tendered += p.tender_value || 0;
+    map[name].spent += p.paid_amount || 0;
+  });
+
+  return Object.values(map).sort((a, b) => b.projectCount - a.projectCount);
 }
 
 export interface SchemeStat {
@@ -411,29 +515,21 @@ export interface SchemeStat {
 }
 
 export async function getStatsByScheme(): Promise<SchemeStat[]> {
-  const db = await getMongoDb();
-  const collection = db.collection('projects');
-  const pipeline = [
-    {
-      $group: {
-        _id: '$scheme_normalized',
-        projectCount: { $sum: 1 },
-        sanctioned: { $sum: { $ifNull: ['$sanctioned_amount', 0] } },
-        tendered: { $sum: { $ifNull: ['$tender_value', 0] } },
-        spent: { $sum: { $ifNull: ['$paid_amount', 0] } }
-      }
-    },
-    { $sort: { sanctioned: -1 } }
-  ];
+  const { projects } = await getAllProjects({ limit: 500 });
+  const map: Record<string, SchemeStat> = {};
 
-  const results = await collection.aggregate(pipeline).toArray();
-  return results.map((r: any) => ({
-    scheme: r._id,
-    projectCount: r.projectCount,
-    sanctioned: r.sanctioned,
-    tendered: r.tendered,
-    spent: r.spent
-  }));
+  projects.forEach(p => {
+    const scheme = p.scheme_normalized || 'Other';
+    if (!map[scheme]) {
+      map[scheme] = { scheme, projectCount: 0, sanctioned: 0, tendered: 0, spent: 0 };
+    }
+    map[scheme].projectCount += 1;
+    map[scheme].sanctioned += p.sanctioned_amount || 0;
+    map[scheme].tendered += p.tender_value || 0;
+    map[scheme].spent += p.paid_amount || 0;
+  });
+
+  return Object.values(map).sort((a, b) => b.sanctioned - a.sanctioned);
 }
 
 export interface CategoryStat {
@@ -444,39 +540,30 @@ export interface CategoryStat {
 }
 
 export async function getStatsByCategory(): Promise<CategoryStat[]> {
-  const db = await getMongoDb();
-  const collection = db.collection('projects');
-  const pipeline = [
-    {
-      $group: {
-        _id: '$category',
-        projectCount: { $sum: 1 },
-        sanctioned: { $sum: { $ifNull: ['$sanctioned_amount', 0] } },
-        tendered: { $sum: { $ifNull: ['$tender_value', 0] } }
-      }
-    },
-    { $sort: { projectCount: -1 } }
-  ];
+  const { projects } = await getAllProjects({ limit: 500 });
+  const map: Record<string, CategoryStat> = {};
 
-  const results = await collection.aggregate(pipeline).toArray();
-  return results.map((r: any) => ({
-    category: r._id,
-    projectCount: r.projectCount,
-    sanctioned: r.sanctioned,
-    tendered: r.tendered
-  }));
+  projects.forEach(p => {
+    const cat = p.category || 'Other';
+    if (!map[cat]) {
+      map[cat] = { category: cat, projectCount: 0, sanctioned: 0, tendered: 0 };
+    }
+    map[cat].projectCount += 1;
+    map[cat].sanctioned += p.sanctioned_amount || 0;
+    map[cat].tendered += p.tender_value || 0;
+  });
+
+  return Object.values(map).sort((a, b) => b.projectCount - a.projectCount);
 }
 
 export async function getSourceOverlap() {
-  const db = await getMongoDb();
-  const collection = db.collection('projects');
-  const allDocs = await collection.find({}).toArray();
-
+  const { projects } = await getAllProjects({ limit: 500 });
   const systemCountMap: Record<string, number> = {};
-  allDocs.forEach(d => {
-    (d.sources || []).forEach((s: any) => {
-      const sys = s.source_system;
-      systemCountMap[sys] = (systemCountMap[sys] || 0) + 1;
+
+  projects.forEach(p => {
+    (p.sources_summary || '').split(',').forEach((sys: string) => {
+      const clean = sys.trim();
+      if (clean) systemCountMap[clean] = (systemCountMap[clean] || 0) + 1;
     });
   });
 
@@ -495,8 +582,8 @@ export async function getSourceOverlap() {
   ];
 
   const crossMatches = pairs.map(pair => {
-    const count = allDocs.filter(d => {
-      const systems = (d.sources || []).map((s: any) => s.source_system);
+    const count = projects.filter(p => {
+      const systems = (p.sources_summary || '').split(',').map((s: string) => s.trim());
       return systems.includes(pair.a) && systems.includes(pair.b);
     }).length;
 
