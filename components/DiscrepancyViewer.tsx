@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertTriangle, Info, ArrowRight } from 'lucide-react';
+import { Info } from 'lucide-react';
 import { formatINR } from './CurrencyDisplay';
 
 interface DiscrepancyViewerProps {
@@ -22,51 +22,50 @@ export default function DiscrepancyViewer({
   if (!summary && !hasValues) return null;
 
   const tenderSavings = estimatedValue && tenderValue ? estimatedValue - tenderValue : null;
-  const paymentVariance = tenderValue && paidAmount ? paidAmount - tenderValue : null;
 
   return (
-    <div className="bg-amber-50/70 border border-amber-200/80 rounded-xl p-5 shadow-sm text-slate-800">
+    <div className="bg-amber-50/60 border border-amber-200/70 rounded-apple-lg p-5 shadow-apple-sm text-slate-800 space-y-3">
       <div className="flex items-start gap-3">
-        <div className="p-2 rounded-lg bg-amber-100 text-amber-800 mt-0.5">
-          <Info className="w-5 h-5" />
+        <div className="w-6 h-6 rounded-full bg-amber-500/10 text-amber-800 flex items-center justify-center flex-shrink-0 mt-0.5">
+          <Info className="w-4 h-4" />
         </div>
-        <div className="flex-1">
-          <h4 className="text-sm font-semibold text-amber-900 flex items-center gap-2">
-            Multi-Source Cross-Check & Lifecycle Variance Analysis
+        <div className="flex-1 space-y-1">
+          <h4 className="text-sm font-semibold text-amber-950">
+            Multi-Source Financial Cross-Check & Variance
           </h4>
-          <p className="text-xs text-amber-800/90 mt-1 leading-relaxed">
-            Government data systems record different financial checkpoints along the project lifecycle. Discrepancies between estimated, tendered, and paid figures represent procurement variance and measurement deductions.
+          <p className="text-xs text-amber-900/80 leading-relaxed">
+            Government databases record different lifecycle points. Estimated budgets, awarded bids, and measured site disbursements reflect legitimate procurement variances.
           </p>
-
-          {/* Side-by-side comparison table */}
-          <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-            <div className="bg-white/80 p-2.5 rounded-lg border border-amber-200">
-              <span className="text-[11px] font-medium text-slate-500 block">Sulekha Sanction</span>
-              <span className="text-sm font-bold text-slate-900">{formatINR(sanctionedAmount)}</span>
-            </div>
-            <div className="bg-white/80 p-2.5 rounded-lg border border-amber-200">
-              <span className="text-[11px] font-medium text-slate-500 block">e-Tender Contract</span>
-              <span className="text-sm font-bold text-slate-900">{formatINR(tenderValue)}</span>
-            </div>
-            <div className="bg-white/80 p-2.5 rounded-lg border border-amber-200">
-              <span className="text-[11px] font-medium text-slate-500 block">Saankhya Paid</span>
-              <span className="text-sm font-bold text-slate-900">{formatINR(paidAmount)}</span>
-            </div>
-            <div className="bg-white/80 p-2.5 rounded-lg border border-amber-200">
-              <span className="text-[11px] font-medium text-slate-500 block">Tender Savings</span>
-              <span className="text-sm font-bold text-emerald-700">
-                {tenderSavings !== null ? (tenderSavings > 0 ? `+${formatINR(tenderSavings)}` : formatINR(tenderSavings)) : 'N/A'}
-              </span>
-            </div>
-          </div>
-
-          {summary && (
-            <div className="mt-3 p-2.5 rounded-lg bg-amber-100/60 border border-amber-200 text-xs text-amber-950 font-medium">
-              <strong>Observation:</strong> {summary}
-            </div>
-          )}
         </div>
       </div>
+
+      {/* Grid of comparison values */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
+        <div className="bg-white/80 p-3 rounded-apple border border-amber-200/50">
+          <span className="text-[10px] font-medium text-slate-500 uppercase tracking-wider block">Sulekha Sanction</span>
+          <span className="text-sm font-semibold text-slate-900 mt-0.5 block">{formatINR(sanctionedAmount)}</span>
+        </div>
+        <div className="bg-white/80 p-3 rounded-apple border border-amber-200/50">
+          <span className="text-[10px] font-medium text-slate-500 uppercase tracking-wider block">e-Tender Award</span>
+          <span className="text-sm font-semibold text-slate-900 mt-0.5 block">{formatINR(tenderValue)}</span>
+        </div>
+        <div className="bg-white/80 p-3 rounded-apple border border-amber-200/50">
+          <span className="text-[10px] font-medium text-slate-500 uppercase tracking-wider block">Saankhya Paid</span>
+          <span className="text-sm font-semibold text-slate-900 mt-0.5 block">{formatINR(paidAmount)}</span>
+        </div>
+        <div className="bg-white/80 p-3 rounded-apple border border-amber-200/50">
+          <span className="text-[10px] font-medium text-slate-500 uppercase tracking-wider block">Tender Savings</span>
+          <span className="text-sm font-semibold text-emerald-700 mt-0.5 block">
+            {tenderSavings !== null ? (tenderSavings > 0 ? `+${formatINR(tenderSavings)}` : formatINR(tenderSavings)) : 'N/A'}
+          </span>
+        </div>
+      </div>
+
+      {summary && (
+        <div className="text-xs text-amber-950 font-medium bg-amber-100/50 p-2.5 rounded-apple border border-amber-200/40">
+          <span className="font-semibold">Note:</span> {summary}
+        </div>
+      )}
     </div>
   );
 }
