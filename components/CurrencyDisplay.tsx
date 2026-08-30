@@ -15,7 +15,7 @@ export function formatINR(amount: number | null | undefined): string {
 
 export function formatFullINR(amount: number | null | undefined): string {
   if (amount === null || amount === undefined || isNaN(amount)) {
-    return 'Not found in public records';
+    return 'Not recorded in public files';
   }
   return `₹${amount.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
 }
@@ -26,8 +26,6 @@ interface CurrencyDisplayProps {
   className?: string;
   sourceSystem?: string;
   sourceRecordId?: string;
-  sourceUrl?: string;
-  showLakhSuffix?: boolean;
 }
 
 export default function CurrencyDisplay({
@@ -36,28 +34,26 @@ export default function CurrencyDisplay({
   className = '',
   sourceSystem,
   sourceRecordId,
-  sourceUrl,
 }: CurrencyDisplayProps) {
   const isFound = amount !== null && amount !== undefined && !isNaN(amount);
 
   return (
     <div className={`flex flex-col ${className}`}>
-      {label && <span className="text-xs font-medium text-slate-500 uppercase tracking-wider">{label}</span>}
+      {label && <span className="text-[11px] font-medium text-slate-500 tracking-tight">{label}</span>}
       <div className="flex items-baseline gap-1.5 mt-0.5">
         <span className={`font-semibold tracking-tight ${isFound ? 'text-slate-900' : 'text-slate-400 italic text-sm'}`}>
           {isFound ? formatINR(amount) : 'Unknown'}
         </span>
         {isFound && (
-          <span className="text-xs text-slate-500">
+          <span className="text-[11px] text-slate-500 font-normal">
             ({formatFullINR(amount)})
           </span>
         )}
       </div>
       {sourceSystem && (
-        <div className="mt-1 text-[11px] text-slate-500 flex items-center gap-1">
-          <span className="inline-block w-1.5 h-1.5 rounded-full bg-teal-500"></span>
-          <span>Source: <strong className="text-slate-700">{sourceSystem}</strong></span>
-          {sourceRecordId && <span className="text-slate-400">({sourceRecordId})</span>}
+        <div className="mt-1 text-[10px] text-slate-500 flex items-center gap-1 font-mono">
+          <span className="w-1 h-1 rounded-full bg-slate-400"></span>
+          <span>Source: {sourceSystem} {sourceRecordId ? `(${sourceRecordId})` : ''}</span>
         </div>
       )}
     </div>
