@@ -1,0 +1,16 @@
+{
+  "raw_payload": {
+    "report_id": "KERI/QCL/TSR/2024/0488",
+    "project_reference": "Improvements to Vattakkotta Anganawady Road in Mala GP Ward 1",
+    "test_date": "2024-07-15",
+    "test_type": "Bitumen Extraction & Aggregate Gradation Test",
+    "agreement_reference": "AGR-14/AE/LSGD/MALA/2024-25",
+    "description": "Core cut sample tests for 20mm close graded premix surfacing. Binder content 4.2% found compliant with MoRTH / IRC specifications.",
+    "result": "PASSED - Grade VG30 Conforming",
+    "source_url": "https://keri.kerala.gov.in/Reports/QualityReport?rid=KERI_QCL_TSR_2024_0488"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.599516Z",
+  "source_system": "keri",
+  "source_url": "https://keri.kerala.gov.in/Reports/QualityReport?rid=KERI_QCL_TSR_2024_0488",
+  "parser_version": "1.0.0"
+}

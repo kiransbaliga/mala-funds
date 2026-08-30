@@ -1,0 +1,27 @@
+{
+  "raw_payload": {
+    "tender_id": "2024_LSGD_948102_1",
+    "tender_reference": "T-52/EE/LSGD/TSR/2024",
+    "title": "LAC-ADS 2024-25 - Comprehensive Drainage & Culvert System for Mala Town Market Junction",
+    "work_description": "Reinforced concrete covered drain 1.2m width with heavy duty cast iron gratings along Mala bus stand market road.",
+    "financial_year": "2024-25",
+    "scheme_raw": "LAC-ADS 2024-25",
+    "estimated_value": 3500000.0,
+    "tender_value": 3390000.0,
+    "published_date": "2024-11-20",
+    "bid_opening_date": "2024-12-02",
+    "award_date": "2024-12-22",
+    "contractor": "HighTech Civil Engineering Ltd",
+    "status": "Awarded",
+    "department": "Local Infrastructure Development & Engineering",
+    "division": "LSGD Division Thrissur",
+    "source_url": "https://etenders.kerala.gov.in/app?page=FrontEndTenderDetails&service=page&tnid=2024_LSGD_948102_1",
+    "nit_url": "https://etenders.kerala.gov.in/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&sp=Sp9914",
+    "boq_url": "https://etenders.kerala.gov.in/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&sp=Sboq991",
+    "category": "Roads"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.594618Z",
+  "source_system": "etender",
+  "source_url": "https://etenders.kerala.gov.in/app?page=FrontEndTenderDetails&service=page&tnid=2024_LSGD_948102_1",
+  "parser_version": "1.0.0"
+}

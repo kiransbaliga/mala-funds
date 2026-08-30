@@ -1,0 +1,27 @@
+{
+  "raw_payload": {
+    "tender_id": "2024_LSGD_832109_1",
+    "tender_reference": "T-31/AE/LID_EW/KUZHUR/2024",
+    "title": "LAC-ADS 2024-25 - Kuruvilassery-Vadama Canal Bund Road Renovation Mala GP",
+    "work_description": "Concrete paving, rubble pitching, and solar street lighting along canal bund road.",
+    "financial_year": "2024-25",
+    "scheme_raw": "LAC-ADS 2024-25",
+    "estimated_value": 1800000.0,
+    "tender_value": 1740000.0,
+    "published_date": "2024-10-18",
+    "bid_opening_date": "2024-10-28",
+    "award_date": "2024-11-15",
+    "contractor": "T.J. George & Sons Infra, Mala",
+    "status": "Awarded",
+    "department": "Local Self Government Department",
+    "division": "LID & EW Mala",
+    "source_url": "https://etenders.kerala.gov.in/app?page=FrontEndTenderDetails&service=page&tnid=2024_LSGD_832109_1",
+    "nit_url": "https://etenders.kerala.gov.in/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&sp=Sp8P412",
+    "boq_url": "https://etenders.kerala.gov.in/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&sp=Sboq789",
+    "category": "Roads"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.594618Z",
+  "source_system": "etender",
+  "source_url": "https://etenders.kerala.gov.in/app?page=FrontEndTenderDetails&service=page&tnid=2024_LSGD_832109_1",
+  "parser_version": "1.0.0"
+}

@@ -1,0 +1,15 @@
+{
+  "raw_payload": {
+    "meeting_id": "SAK_MALA_2023_M07",
+    "local_body": "Mala Grama Panchayat",
+    "meeting_date": "2023-10-12",
+    "resolution_no": "Res. No. 14/2023",
+    "project_reference": "Improvements to Vattakkotta Anganawady Road - Ward 1 (LAC-ADS)",
+    "decision": "Council unanimously approved administrative sanction for Vattakkotta Anganawady Road improvement under LAC-ADS 2023-24 with an outlay of \u20b96.00 lakh.",
+    "source_url": "https://sakarma.lsgkerala.gov.in/Decisions/ViewResolution?mid=SAK_MALA_2023_M07&rno=14"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.597830Z",
+  "source_system": "sakarma",
+  "source_url": "https://sakarma.lsgkerala.gov.in/Decisions/ViewResolution?mid=SAK_MALA_2023_M07&rno=14",
+  "parser_version": "1.0.0"
+}

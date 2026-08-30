@@ -1,0 +1,25 @@
+{
+  "raw_payload": {
+    "project_code": "SUL_2023_KUZH_0188",
+    "project_name": "Construction of Eravathur-Moonnumuri-Melamthuruthu-Ambilithara Road Kuzhur GP",
+    "financial_year": "2023-24",
+    "scheme_name": "MLA Special Development Fund (MLA SDF)",
+    "sector": "Rural Connectivity",
+    "local_body": "Kuzhur Grama Panchayat",
+    "implementing_agency": "Assistant Executive Engineer, LSGD Sub Division Mala",
+    "as_number": "GO(Rt) No. 892/2023/LSGD",
+    "as_date": "2023-06-22",
+    "ts_number": "TS/EE/LSGD/TSR/112/2023",
+    "ts_date": "2023-08-14",
+    "sanctioned_amount": 2200000.0,
+    "planned_amount": 2200000.0,
+    "expenditure_reported": 2116769.0,
+    "status": "Completed",
+    "source_url": "https://sulekha.lsgkerala.gov.in/Report/ProjectDetails?id=SUL_2023_KUZH_0188",
+    "category": "Roads"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.596663Z",
+  "source_system": "sulekha",
+  "source_url": "https://sulekha.lsgkerala.gov.in/Report/ProjectDetails?id=SUL_2023_KUZH_0188",
+  "parser_version": "1.0.0"
+}

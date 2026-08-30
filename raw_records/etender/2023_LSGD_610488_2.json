@@ -1,0 +1,27 @@
+{
+  "raw_payload": {
+    "tender_id": "2023_LSGD_610488_2",
+    "tender_reference": "T-14/AE/PUTH/2023-24",
+    "title": "LAC-ADS 2023-24 - Construction of Open Gymnasium & Kids Park at Kombathukadavu Puthenchira GP",
+    "work_description": "Installation of outdoor fitness equipment, paver tiles, perimeter fencing and safety rubber flooring.",
+    "financial_year": "2023-24",
+    "scheme_raw": "LAC-ADS Kodungallur LAC",
+    "estimated_value": 1100000.0,
+    "tender_value": 1060000.0,
+    "published_date": "2023-12-01",
+    "bid_opening_date": "2023-12-12",
+    "award_date": "2024-01-05",
+    "contractor": "Green Park Infrastructure Kerala",
+    "status": "Awarded",
+    "department": "Local Self Government Department",
+    "division": "LID & EW Puthenchira",
+    "source_url": "https://etenders.kerala.gov.in/app?page=FrontEndTenderDetails&service=page&tnid=2023_LSGD_610488_2",
+    "nit_url": "https://etenders.kerala.gov.in/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&sp=Sp7712",
+    "boq_url": "https://etenders.kerala.gov.in/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&sp=Sboq771",
+    "category": "Public Buildings"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.594618Z",
+  "source_system": "etender",
+  "source_url": "https://etenders.kerala.gov.in/app?page=FrontEndTenderDetails&service=page&tnid=2023_LSGD_610488_2",
+  "parser_version": "1.0.0"
+}

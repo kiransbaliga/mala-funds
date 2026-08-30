@@ -1,0 +1,242 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Project {
+  id                    String   @id @default(cuid())
+  canonical_name        String
+  description           String?
+  financial_year        String
+  district              String   @default("Thrissur")
+  assembly_constituency String   @default("Kodungallur")
+  local_body            String
+  block_panchayat       String?
+  grama_panchayat       String?
+  ward                  String?
+  village               String?
+  location_text         String?
+  scheme_normalized     String   // e.g. "LAC-ADS", "MLA SDF", "Grama Panchayat Development Fund"
+  scheme_original       String   // Preserved verbatim e.g. "LAC-ADS / MLA SDF 2023-24"
+  mla_name              String?
+  category              String   @default("Other") // Roads, Anganwadis, Schools, Water Supply, Healthcare, Public Buildings
+  confidence_level      String   @default("MEDIUM") // HIGH, MEDIUM, LOW
+  status                String   @default("Proposed") // Proposed, Approved, Administrative Sanction, Technical Sanction, Tendered, Awarded, Work Started, In Progress, Completed, Bills Submitted, Paid, Stalled
+  discrepancy_summary   String?
+  created_at            DateTime @default(now())
+  updated_at            DateTime @updated_at
+
+  sources               ProjectSource[]
+  sanctions             Sanction[]
+  plans                 Plan[]
+  tenders               Tender[]
+  executions            Execution[]
+  payments              Payment[]
+  engineering_records   EngineeringRecord[]
+  governance_records    GovernanceRecord[]
+  audit_records         AuditRecord[]
+
+  @@index([financial_year])
+  @@index([grama_panchayat])
+  @@index([block_panchayat])
+  @@index([scheme_normalized])
+  @@index([status])
+  @@index([category])
+}
+
+model ProjectSource {
+  id                   String   @id @default(cuid())
+  project_id           String
+  project              Project  @relation(fields: [project_id], references: [id], onDelete: Cascade)
+  source_system        String   // etender, sulekha, saankhya, sakarma, keri, pask, mala_panchayat
+  source_record_id     String
+  source_url           String
+  source_title         String
+  retrieved_at         DateTime @default(now())
+  confidence           String   @default("HIGH") // HIGH, MEDIUM, LOW
+  is_directly_reported Boolean  @default(true)
+  raw_payload_path     String?
+
+  sanctions            Sanction[]
+  plans                Plan[]
+  tenders              Tender[]
+  executions           Execution[]
+  payments             Payment[]
+  engineering_records  EngineeringRecord[]
+  governance_records   GovernanceRecord[]
+  audit_records        AuditRecord[]
+
+  @@index([project_id])
+  @@index([source_system])
+  @@index([source_record_id])
+}
+
+model Sanction {
+  id                 String         @id @default(cuid())
+  project_id         String
+  project            Project        @relation(fields: [project_id], references: [id], onDelete: Cascade)
+  source_id          String?
+  source             ProjectSource? @relation(fields: [source_id], references: [id], onDelete: SetNull)
+  as_number          String?
+  as_date            String?
+  ts_number          String?
+  ts_date            String?
+  sanctioned_amount  Float?
+  funding_head       String?
+  created_at         DateTime       @default(now())
+
+  @@index([project_id])
+}
+
+model Plan {
+  id                 String         @id @default(cuid())
+  project_id         String
+  project            Project        @relation(fields: [project_id], references: [id], onDelete: Cascade)
+  source_id          String?
+  source             ProjectSource? @relation(fields: [source_id], references: [id], onDelete: SetNull)
+  planned_amount     Float?
+  approved_amount    Float?
+  revised_amount     Float?
+  plan_year          String?
+  sector             String?
+  status             String?
+  created_at         DateTime       @default(now())
+
+  @@index([project_id])
+}
+
+model Tender {
+  id                 String         @id @default(cuid())
+  project_id         String
+  project            Project        @relation(fields: [project_id], references: [id], onDelete: Cascade)
+  source_id          String?
+  source             ProjectSource? @relation(fields: [source_id], references: [id], onDelete: SetNull)
+  tender_id          String?
+  tender_reference   String?
+  estimated_value    Float?
+  tender_value       Float?
+  published_date     String?
+  bid_opening_date   String?
+  award_date         String?
+  contractor         String?
+  nit_url            String?
+  boq_url            String?
+  status             String?
+  created_at         DateTime       @default(now())
+
+  @@index([project_id])
+  @@index([tender_id])
+}
+
+model Execution {
+  id                        String         @id @default(cuid())
+  project_id                String
+  project                   Project        @relation(fields: [project_id], references: [id], onDelete: Cascade)
+  source_id                 String?
+  source                    ProjectSource? @relation(fields: [source_id], references: [id], onDelete: SetNull)
+  work_order_number         String?
+  work_order_date           String?
+  start_date                String?
+  scheduled_completion_date String?
+  actual_completion_date    String?
+  progress_percent          Int?           @default(0)
+  status                    String?
+  created_at                DateTime       @default(now())
+
+  @@index([project_id])
+}
+
+model Payment {
+  id                  String         @id @default(cuid())
+  project_id          String
+  project             Project        @relation(fields: [project_id], references: [id], onDelete: Cascade)
+  source_id           String?
+  source              ProjectSource? @relation(fields: [source_id], references: [id], onDelete: SetNull)
+  bill_reference      String?
+  voucher_number      String?
+  transaction_date    String?
+  amount              Float
+  cumulative_amount   Float?
+  payment_status      String?
+  treasury_reference  String?
+  created_at          DateTime       @default(now())
+
+  @@index([project_id])
+}
+
+model EngineeringRecord {
+  id                   String         @id @default(cuid())
+  project_id           String
+  project              Project        @relation(fields: [project_id], references: [id], onDelete: Cascade)
+  source_id            String?
+  source               ProjectSource? @relation(fields: [source_id], references: [id], onDelete: SetNull)
+  report_id            String?
+  test_date            String?
+  test_type            String?
+  agreement_reference  String?
+  description          String?
+  result               String?
+  created_at           DateTime       @default(now())
+
+  @@index([project_id])
+}
+
+model GovernanceRecord {
+  id                   String         @id @default(cuid())
+  project_id           String
+  project              Project        @relation(fields: [project_id], references: [id], onDelete: Cascade)
+  source_id            String?
+  source               ProjectSource? @relation(fields: [source_id], references: [id], onDelete: SetNull)
+  local_body           String?
+  meeting_id           String?
+  meeting_date         String?
+  resolution           String?
+  decision             String?
+  created_at           DateTime       @default(now())
+
+  @@index([project_id])
+}
+
+model AuditRecord {
+  id                   String         @id @default(cuid())
+  project_id           String
+  project              Project        @relation(fields: [project_id], references: [id], onDelete: Cascade)
+  source_id            String?
+  source               ProjectSource? @relation(fields: [source_id], references: [id], onDelete: SetNull)
+  audit_year           String?
+  observation          String?
+  financial_amount     Float?
+  response             String?
+  created_at           DateTime       @default(now())
+
+  @@index([project_id])
+}
+
+model IngestionLog {
+  id                   String   @id @default(cuid())
+  source_system        String
+  started_at           DateTime @default(now())
+  finished_at          DateTime @default(now())
+  records_found        Int      @default(0)
+  records_new          Int      @default(0)
+  records_updated      Int      @default(0)
+  records_failed       Int      @default(0)
+  status               String   @default("COMPLETED")
+  message              String?
+}
+
+model GeographicEntity {
+  id          String   @id @default(cuid())
+  lgd_code    String?  @unique
+  entity_type String   // DISTRICT, LAC, BLOCK, GP, WARD
+  name        String
+  parent_id   String?
+  created_at  DateTime @default(now())
+
+  @@index([entity_type])
+  @@index([name])
+}

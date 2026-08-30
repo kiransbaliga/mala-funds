@@ -1,0 +1,15 @@
+{
+  "raw_payload": {
+    "meeting_id": "SAK_KUZH_2023_M04",
+    "local_body": "Kuzhur Grama Panchayat",
+    "meeting_date": "2023-07-19",
+    "resolution_no": "Res. No. 08/2023",
+    "project_reference": "Construction of Eravathur-Moonnumuri-Melamthuruthu-Ambilithara Road",
+    "decision": "Resolved to accord NOC and site clearance for executing MLA-SDF road construction work through LSGD Sub Division Mala.",
+    "source_url": "https://sakarma.lsgkerala.gov.in/Decisions/ViewResolution?mid=SAK_KUZH_2023_M04&rno=08"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.597830Z",
+  "source_system": "sakarma",
+  "source_url": "https://sakarma.lsgkerala.gov.in/Decisions/ViewResolution?mid=SAK_KUZH_2023_M04&rno=08",
+  "parser_version": "1.0.0"
+}

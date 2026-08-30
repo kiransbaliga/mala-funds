@@ -1,0 +1,15 @@
+{
+  "raw_payload": {
+    "meeting_id": "SAK_ANNAM_2024_M09",
+    "local_body": "Annamanada Grama Panchayat",
+    "meeting_date": "2024-08-14",
+    "resolution_no": "Res. No. 42/2024",
+    "project_reference": "Reconstruction of Kundoor River Bund Protection Wall",
+    "decision": "Approved site sketch and administrative clearance for Chalakudy river bund masonry protection under MLA-SDF.",
+    "source_url": "https://sakarma.lsgkerala.gov.in/Decisions/ViewResolution?mid=SAK_ANNAM_2024_M09&rno=42"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.597830Z",
+  "source_system": "sakarma",
+  "source_url": "https://sakarma.lsgkerala.gov.in/Decisions/ViewResolution?mid=SAK_ANNAM_2024_M09&rno=42",
+  "parser_version": "1.0.0"
+}

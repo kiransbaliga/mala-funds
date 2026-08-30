@@ -1,0 +1,27 @@
+{
+  "raw_payload": {
+    "tender_id": "2024_LSGD_871204_2",
+    "tender_reference": "T-38/AE/POYYA/2024",
+    "title": "LAC-ADS 2024-25 - Madathumpady Anganwadi Building Construction Poyya GP Ward 6",
+    "work_description": "New child-friendly Anganwadi building with classroom, activity area, modern kitchen and child-safe sanitaries.",
+    "financial_year": "2024-25",
+    "scheme_raw": "LAC-ADS Kodungallur LAC",
+    "estimated_value": 1400000.0,
+    "tender_value": 1365000.0,
+    "published_date": "2024-09-18",
+    "bid_opening_date": "2024-09-29",
+    "award_date": "2024-10-20",
+    "contractor": "Poyya Rural Infrastructure Builders",
+    "status": "Awarded",
+    "department": "Local Self Government Department",
+    "division": "LID & EW Poyya GP",
+    "source_url": "https://etenders.kerala.gov.in/app?page=FrontEndTenderDetails&service=page&tnid=2024_LSGD_871204_2",
+    "nit_url": "https://etenders.kerala.gov.in/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&sp=Sp3318",
+    "boq_url": "https://etenders.kerala.gov.in/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&sp=Sboq331",
+    "category": "Anganwadis"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.594618Z",
+  "source_system": "etender",
+  "source_url": "https://etenders.kerala.gov.in/app?page=FrontEndTenderDetails&service=page&tnid=2024_LSGD_871204_2",
+  "parser_version": "1.0.0"
+}

@@ -1,0 +1,16 @@
+{
+  "raw_payload": {
+    "report_id": "KERI/QCL/TSR/2023/1109",
+    "project_reference": "Construction of Eravathur-Moonnumuri-Melamthuruthu-Ambilithara Road Kuzhur GP",
+    "test_date": "2024-01-20",
+    "test_type": "Compressive Strength of Concrete Cubes (M25 Culvert Slab)",
+    "agreement_reference": "AGR-88/EE/LSGD/2023",
+    "description": "28-day compressive strength of 150mm cubes tested for culvert deck slab. Average strength 29.4 N/mm\u00b2.",
+    "result": "PASSED - M25 Standard Met",
+    "source_url": "https://keri.kerala.gov.in/Reports/QualityReport?rid=KERI_QCL_TSR_2023_1109"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.599516Z",
+  "source_system": "keri",
+  "source_url": "https://keri.kerala.gov.in/Reports/QualityReport?rid=KERI_QCL_TSR_2023_1109",
+  "parser_version": "1.0.0"
+}

@@ -1,0 +1,25 @@
+{
+  "raw_payload": {
+    "project_code": "SUL_2024_MALA_0842",
+    "project_name": "Construction of Dining Hall & Kitchen at GMLP School Kuruvilassery",
+    "financial_year": "2024-25",
+    "scheme_name": "LAC-ADS Kodungallur Constituency",
+    "sector": "School Infrastructure",
+    "local_body": "Mala Grama Panchayat",
+    "implementing_agency": "Assistant Engineer, LID & EW Mala",
+    "as_number": "GO(Rt) No. 782/2024/LSGD",
+    "as_date": "2024-08-19",
+    "ts_number": "TS/AE/MALA/38/2024",
+    "ts_date": "2024-09-25",
+    "sanctioned_amount": 1200000.0,
+    "planned_amount": 1200000.0,
+    "expenditure_reported": null,
+    "status": "Administrative Sanction",
+    "source_url": "https://sulekha.lsgkerala.gov.in/Report/ProjectDetails?id=SUL_2024_MALA_0842",
+    "category": "Schools"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.596663Z",
+  "source_system": "sulekha",
+  "source_url": "https://sulekha.lsgkerala.gov.in/Report/ProjectDetails?id=SUL_2024_MALA_0842",
+  "parser_version": "1.0.0"
+}

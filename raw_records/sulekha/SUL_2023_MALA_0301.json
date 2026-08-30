@@ -1,0 +1,25 @@
+{
+  "raw_payload": {
+    "project_code": "SUL_2023_MALA_0301",
+    "project_name": "Modernization of Mala Community Health Centre / Taluk Hospital Casualty Waiting Area",
+    "financial_year": "2023-24",
+    "scheme_name": "LAC-ADS Kodungallur LAC",
+    "sector": "Public Health Infrastructure",
+    "local_body": "Mala Block Panchayat / Mala GP",
+    "implementing_agency": "Assistant Executive Engineer, LSGD Sub Division Mala",
+    "as_number": "GO(Rt) No. 1104/2022/LSGD",
+    "as_date": "2022-12-08",
+    "ts_number": "TS/EE/LSGD/TSR/201/2023",
+    "ts_date": "2023-04-12",
+    "sanctioned_amount": 2500000.0,
+    "planned_amount": 2500000.0,
+    "expenditure_reported": 2435000.0,
+    "status": "Completed",
+    "source_url": "https://sulekha.lsgkerala.gov.in/Report/ProjectDetails?id=SUL_2023_MALA_0301",
+    "category": "Healthcare"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.596663Z",
+  "source_system": "sulekha",
+  "source_url": "https://sulekha.lsgkerala.gov.in/Report/ProjectDetails?id=SUL_2023_MALA_0301",
+  "parser_version": "1.0.0"
+}

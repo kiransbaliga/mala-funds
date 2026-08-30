@@ -1,0 +1,27 @@
+{
+  "raw_payload": {
+    "tender_id": "2024_LSGD_789104_1",
+    "tender_reference": "T-24/EE/LSGD/TSR/2024-25",
+    "title": "MLA SDF - Installation of High Mast Lights at Poyya Kadavu Junction and Poyya Hospital Junction",
+    "work_description": "Supply, erection, testing and commissioning of 16m High Mast lighting systems.",
+    "financial_year": "2024-25",
+    "scheme_raw": "MLA-SDF 2024-25",
+    "estimated_value": 950000.0,
+    "tender_value": 918000.0,
+    "published_date": "2024-09-05",
+    "bid_opening_date": "2024-09-16",
+    "award_date": "2024-10-02",
+    "contractor": "Keltron Lighting & Energy Systems",
+    "status": "Awarded",
+    "department": "Local Infrastructure Development & Engineering",
+    "division": "LSGD Division Thrissur",
+    "source_url": "https://etenders.kerala.gov.in/app?page=FrontEndTenderDetails&service=page&tnid=2024_LSGD_789104_1",
+    "nit_url": "https://etenders.kerala.gov.in/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&sp=Sp9M201",
+    "boq_url": "https://etenders.kerala.gov.in/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&sp=Sboq811",
+    "category": "Public Buildings"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.594618Z",
+  "source_system": "etender",
+  "source_url": "https://etenders.kerala.gov.in/app?page=FrontEndTenderDetails&service=page&tnid=2024_LSGD_789104_1",
+  "parser_version": "1.0.0"
+}

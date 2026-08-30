@@ -1,0 +1,15 @@
+{
+  "raw_payload": {
+    "meeting_id": "SAK_POYYA_2024_M08",
+    "local_body": "Poyya Grama Panchayat",
+    "meeting_date": "2024-07-25",
+    "resolution_no": "Res. No. 33/2024",
+    "project_reference": "Installation of High Mast Lights at Poyya Kadavu and Poyya Hospital Junctions",
+    "decision": "Approved site selection and KSEB power connection feasibility for high mast light installations funded by MLA SDF.",
+    "source_url": "https://sakarma.lsgkerala.gov.in/Decisions/ViewResolution?mid=SAK_POYYA_2024_M08&rno=33"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.597830Z",
+  "source_system": "sakarma",
+  "source_url": "https://sakarma.lsgkerala.gov.in/Decisions/ViewResolution?mid=SAK_POYYA_2024_M08&rno=33",
+  "parser_version": "1.0.0"
+}

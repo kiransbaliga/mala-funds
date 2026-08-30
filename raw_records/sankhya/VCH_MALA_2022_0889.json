@@ -1,0 +1,19 @@
+{
+  "raw_payload": {
+    "voucher_no": "VCH/MALA/2022/0889",
+    "bill_reference": "CB-12/LSGD-MALA/2022",
+    "project_reference": "Community Drinking Water Kiosk & RO Plant at Mala Bus Stand",
+    "payee_name": "AquaPure Tech Solutions",
+    "transaction_date": "2022-11-28",
+    "amount": 831000.0,
+    "cumulative_amount": 831000.0,
+    "payment_status": "Paid",
+    "treasury_reference": "UTR/TREAS/MALA/2022/100412",
+    "head_of_account": "4515-00-103-98 MLA SDF Drinking Water",
+    "source_url": "https://saankhya.lsgkerala.gov.in/Voucher/Details?vno=VCH_MALA_2022_0889"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.598912Z",
+  "source_system": "saankhya",
+  "source_url": "https://saankhya.lsgkerala.gov.in/Voucher/Details?vno=VCH_MALA_2022_0889",
+  "parser_version": "1.0.0"
+}

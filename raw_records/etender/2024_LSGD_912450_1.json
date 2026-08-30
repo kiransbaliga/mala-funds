@@ -1,0 +1,27 @@
+{
+  "raw_payload": {
+    "tender_id": "2024_LSGD_912450_1",
+    "tender_reference": "T-45/AE/LID_EW/ANNAM/2024",
+    "title": "MLA SDF 2024-25 - Reconstruction of Kundoor River Bund Protection Wall in Annamanada GP",
+    "work_description": "Rubble masonry protection wall with filter media and weep holes along Chalakudy river bank stretch at Kundoor.",
+    "financial_year": "2024-25",
+    "scheme_raw": "MLA-SDF 2024-25",
+    "estimated_value": 1400000.0,
+    "tender_value": 1372000.0,
+    "published_date": "2024-10-02",
+    "bid_opening_date": "2024-10-14",
+    "award_date": "2024-10-30",
+    "contractor": "Mary Matha Constructions, Chalakudy",
+    "status": "Awarded",
+    "department": "Local Self Government Department",
+    "division": "LSGD Section Annamanada",
+    "source_url": "https://etenders.kerala.gov.in/app?page=FrontEndTenderDetails&service=page&tnid=2024_LSGD_912450_1",
+    "nit_url": "https://etenders.kerala.gov.in/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&sp=Sp8801",
+    "boq_url": "https://etenders.kerala.gov.in/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&sp=Sboq880",
+    "category": "Public Works"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.594618Z",
+  "source_system": "etender",
+  "source_url": "https://etenders.kerala.gov.in/app?page=FrontEndTenderDetails&service=page&tnid=2024_LSGD_912450_1",
+  "parser_version": "1.0.0"
+}

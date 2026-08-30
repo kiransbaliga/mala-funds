@@ -1,0 +1,25 @@
+{
+  "raw_payload": {
+    "project_code": "SUL_2024_MALA_0771",
+    "project_name": "Kuruvilassery-Vadama Canal Bund Road Renovation Mala GP",
+    "financial_year": "2024-25",
+    "scheme_name": "LAC-ADS 2024-25",
+    "sector": "Roads & Bridges",
+    "local_body": "Mala Grama Panchayat",
+    "implementing_agency": "Assistant Engineer, LID & EW Mala",
+    "as_number": "GO(Rt) No. 518/2024/LSGD",
+    "as_date": "2024-05-12",
+    "ts_number": "TS/LID-EW/MALA/22/2024",
+    "ts_date": "2024-07-10",
+    "sanctioned_amount": 1800000.0,
+    "planned_amount": 1800000.0,
+    "expenditure_reported": null,
+    "status": "In Progress",
+    "source_url": "https://sulekha.lsgkerala.gov.in/Report/ProjectDetails?id=SUL_2024_MALA_0771",
+    "category": "Roads"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.596663Z",
+  "source_system": "sulekha",
+  "source_url": "https://sulekha.lsgkerala.gov.in/Report/ProjectDetails?id=SUL_2024_MALA_0771",
+  "parser_version": "1.0.0"
+}

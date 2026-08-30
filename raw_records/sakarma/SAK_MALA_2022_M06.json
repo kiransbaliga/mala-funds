@@ -1,0 +1,15 @@
+{
+  "raw_payload": {
+    "meeting_id": "SAK_MALA_2022_M06",
+    "local_body": "Mala Grama Panchayat",
+    "meeting_date": "2022-05-14",
+    "resolution_no": "Res. No. 09/2022",
+    "project_reference": "Community Drinking Water Kiosk & RO Plant at Mala Bus Stand",
+    "decision": "Resolved to allocate 100 sq.ft at Mala private bus stand terminal for setting up MLA-SDF funded RO drinking water plant.",
+    "source_url": "https://sakarma.lsgkerala.gov.in/Decisions/ViewResolution?mid=SAK_MALA_2022_M06&rno=09"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.597830Z",
+  "source_system": "sakarma",
+  "source_url": "https://sakarma.lsgkerala.gov.in/Decisions/ViewResolution?mid=SAK_MALA_2022_M06&rno=09",
+  "parser_version": "1.0.0"
+}

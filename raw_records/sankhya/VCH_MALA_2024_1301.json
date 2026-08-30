@@ -1,0 +1,19 @@
+{
+  "raw_payload": {
+    "voucher_no": "VCH/MALA/2024/1301",
+    "bill_reference": "CB-77/LSGD-MALA/2024",
+    "project_reference": "Kollamparambu Scheduled Caste Colony Drinking Water Pipeline Extension Mala GP",
+    "payee_name": "Mala Water Works Contractors",
+    "transaction_date": "2024-09-04",
+    "amount": 435000.0,
+    "cumulative_amount": 435000.0,
+    "payment_status": "Paid",
+    "treasury_reference": "UTR/TREAS/MALA/2024/770119",
+    "head_of_account": "2215-01-102-99 SC Plan Drinking Water",
+    "source_url": "https://saankhya.lsgkerala.gov.in/Voucher/Details?vno=VCH_MALA_2024_1301"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.598912Z",
+  "source_system": "saankhya",
+  "source_url": "https://saankhya.lsgkerala.gov.in/Voucher/Details?vno=VCH_MALA_2024_1301",
+  "parser_version": "1.0.0"
+}

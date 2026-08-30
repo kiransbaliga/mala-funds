@@ -1,0 +1,19 @@
+{
+  "raw_payload": {
+    "voucher_no": "VCH/MALA/2024/1105",
+    "bill_reference": "CB-62/LSGD/2024",
+    "project_reference": "Upgradation of Ramavilasam LP School Smart Classroom & Dining Hall",
+    "payee_name": "Sree Narayana Constructions",
+    "transaction_date": "2024-11-12",
+    "amount": 1050000.0,
+    "cumulative_amount": 1050000.0,
+    "payment_status": "Partially Paid",
+    "treasury_reference": "UTR/TREAS/IRINJ/2024/991204",
+    "head_of_account": "8443-00-108-97 LAC-ADS School Infra",
+    "source_url": "https://saankhya.lsgkerala.gov.in/Voucher/Details?vno=VCH_MALA_2024_1105"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.598912Z",
+  "source_system": "saankhya",
+  "source_url": "https://saankhya.lsgkerala.gov.in/Voucher/Details?vno=VCH_MALA_2024_1105",
+  "parser_version": "1.0.0"
+}

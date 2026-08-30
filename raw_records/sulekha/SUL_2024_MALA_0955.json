@@ -1,0 +1,25 @@
+{
+  "raw_payload": {
+    "project_code": "SUL_2024_MALA_0955",
+    "project_name": "Installation of High Mast Lighting System at Vadama Junction Mala GP",
+    "financial_year": "2024-25",
+    "scheme_name": "MLA SDF 2024-25",
+    "sector": "Electrification",
+    "local_body": "Mala Grama Panchayat",
+    "implementing_agency": "LSGD Section Mala",
+    "as_number": "GO(Rt) No. 955/2024/LSGD",
+    "as_date": "2024-10-10",
+    "ts_number": "TS/AE/MALA/44/2024",
+    "ts_date": "2024-11-15",
+    "sanctioned_amount": 500000.0,
+    "planned_amount": 500000.0,
+    "expenditure_reported": null,
+    "status": "Administrative Sanction",
+    "source_url": "https://sulekha.lsgkerala.gov.in/Report/ProjectDetails?id=SUL_2024_MALA_0955",
+    "category": "Public Buildings"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.596663Z",
+  "source_system": "sulekha",
+  "source_url": "https://sulekha.lsgkerala.gov.in/Report/ProjectDetails?id=SUL_2024_MALA_0955",
+  "parser_version": "1.0.0"
+}

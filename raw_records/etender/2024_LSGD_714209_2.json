@@ -1,0 +1,27 @@
+{
+  "raw_payload": {
+    "tender_id": "2024_LSGD_714209_2",
+    "tender_reference": "T-19/AE/LID_EW/MALA/2024",
+    "title": "LAC-ADS 2024-25 - Upgradation of Ramavilasam LP School Smart Classroom and Dining Hall Mala GP",
+    "work_description": "Civil renovation of school building, tiled flooring, acoustic ceiling, and kitchen dining hall expansion.",
+    "financial_year": "2024-25",
+    "scheme_raw": "LAC-ADS Kodungallur LAC",
+    "estimated_value": 1500000.0,
+    "tender_value": 1465000.0,
+    "published_date": "2024-07-22",
+    "bid_opening_date": "2024-08-01",
+    "award_date": "2024-08-20",
+    "contractor": "Sree Narayana Constructions, Poyya",
+    "status": "Awarded",
+    "department": "Local Self Government Department",
+    "division": "LID & EW Section Mala Grama Panchayat",
+    "source_url": "https://etenders.kerala.gov.in/app?page=FrontEndTenderDetails&service=page&tnid=2024_LSGD_714209_2",
+    "nit_url": "https://etenders.kerala.gov.in/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&sp=Sp7Q114",
+    "boq_url": "https://etenders.kerala.gov.in/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&sp=Sboq442",
+    "category": "Schools"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.594618Z",
+  "source_system": "etender",
+  "source_url": "https://etenders.kerala.gov.in/app?page=FrontEndTenderDetails&service=page&tnid=2024_LSGD_714209_2",
+  "parser_version": "1.0.0"
+}

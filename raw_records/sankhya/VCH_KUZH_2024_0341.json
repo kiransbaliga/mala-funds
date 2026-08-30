@@ -1,0 +1,19 @@
+{
+  "raw_payload": {
+    "voucher_no": "VCH/KUZH/2024/0341",
+    "bill_reference": "CB-18/LSGD-KUZH/2024",
+    "project_reference": "Construction of Eravathur-Moonnumuri-Melamthuruthu-Ambilithara Road",
+    "payee_name": "Apex Infra Projects Pvt Ltd",
+    "transaction_date": "2024-03-20",
+    "amount": 2116769.0,
+    "cumulative_amount": 2116769.0,
+    "payment_status": "Paid",
+    "treasury_reference": "UTR/TREAS/KODUNG/2024/552190",
+    "head_of_account": "4515-00-103-98 MLA SDF Infrastructure",
+    "source_url": "https://saankhya.lsgkerala.gov.in/Voucher/Details?vno=VCH_KUZH_2024_0341"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.598912Z",
+  "source_system": "saankhya",
+  "source_url": "https://saankhya.lsgkerala.gov.in/Voucher/Details?vno=VCH_KUZH_2024_0341",
+  "parser_version": "1.0.0"
+}

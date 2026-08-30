@@ -1,0 +1,25 @@
+{
+  "raw_payload": {
+    "project_code": "SUL_2024_POYYA_0219",
+    "project_name": "Installation of High Mast Lights at Poyya Kadavu Junction and Poyya Hospital Junction",
+    "financial_year": "2024-25",
+    "scheme_name": "MLA SDF / LAC-ADS 2024-25",
+    "sector": "Public Safety & Electrification",
+    "local_body": "Poyya Grama Panchayat",
+    "implementing_agency": "Executive Engineer, LSGD Division Thrissur",
+    "as_number": "GO(Rt) No. 344/2024/LSGD",
+    "as_date": "2024-06-10",
+    "ts_number": "TS/EE/LSGD/TSR/78/2024",
+    "ts_date": "2024-07-15",
+    "sanctioned_amount": 950000.0,
+    "planned_amount": 950000.0,
+    "expenditure_reported": 918000.0,
+    "status": "In Progress",
+    "source_url": "https://sulekha.lsgkerala.gov.in/Report/ProjectDetails?id=SUL_2024_POYYA_0219",
+    "category": "Public Buildings"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.596663Z",
+  "source_system": "sulekha",
+  "source_url": "https://sulekha.lsgkerala.gov.in/Report/ProjectDetails?id=SUL_2024_POYYA_0219",
+  "parser_version": "1.0.0"
+}

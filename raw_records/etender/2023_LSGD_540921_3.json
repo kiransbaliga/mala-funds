@@ -1,0 +1,27 @@
+{
+  "raw_payload": {
+    "tender_id": "2023_LSGD_540921_3",
+    "tender_reference": "T-04/AE/MALA/2023-24",
+    "title": "LAC-ADS 2022-23 - Modernization of Mala Community Health Centre / Taluk Hospital Casualty Waiting Area",
+    "work_description": "Construction of patient waiting lounge, ramp with stainless steel handrails, and roofing.",
+    "financial_year": "2023-24",
+    "scheme_raw": "LAC-ADS Kodungallur Constituency",
+    "estimated_value": 2500000.0,
+    "tender_value": 2435000.0,
+    "published_date": "2023-08-14",
+    "bid_opening_date": "2023-08-25",
+    "award_date": "2023-09-15",
+    "contractor": "V.T. Poulose Contractors, Chalakudy",
+    "status": "Awarded",
+    "department": "Local Self Government Department",
+    "division": "LSGD Sub Division Mala",
+    "source_url": "https://etenders.kerala.gov.in/app?page=FrontEndTenderDetails&service=page&tnid=2023_LSGD_540921_3",
+    "nit_url": "https://etenders.kerala.gov.in/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&sp=Sp1L802",
+    "boq_url": "https://etenders.kerala.gov.in/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&sp=Sboq312",
+    "category": "Healthcare"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.594618Z",
+  "source_system": "etender",
+  "source_url": "https://etenders.kerala.gov.in/app?page=FrontEndTenderDetails&service=page&tnid=2023_LSGD_540921_3",
+  "parser_version": "1.0.0"
+}

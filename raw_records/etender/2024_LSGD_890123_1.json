@@ -1,0 +1,27 @@
+{
+  "raw_payload": {
+    "tender_id": "2024_LSGD_890123_1",
+    "tender_reference": "T-40/AE/MALA/2024-25",
+    "title": "LAC-ADS 2024-25 - Construction of Dining Hall & Kitchen at GMLP School Kuruvilassery",
+    "work_description": "Construction of new dining building with kitchen slab, wash basins, and roof trusses.",
+    "financial_year": "2024-25",
+    "scheme_raw": "LAC-ADS Kodungallur Constituency",
+    "estimated_value": 1200000.0,
+    "tender_value": 1180000.0,
+    "published_date": "2024-11-04",
+    "bid_opening_date": "2024-11-15",
+    "award_date": null,
+    "contractor": null,
+    "status": "Tendered",
+    "department": "Local Infrastructure Development & Engineering",
+    "division": "LID & EW Mala GP",
+    "source_url": "https://etenders.kerala.gov.in/app?page=FrontEndTenderDetails&service=page&tnid=2024_LSGD_890123_1",
+    "nit_url": "https://etenders.kerala.gov.in/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&sp=Sp5K909",
+    "boq_url": "https://etenders.kerala.gov.in/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&sp=Sboq555",
+    "category": "Schools"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.594618Z",
+  "source_system": "etender",
+  "source_url": "https://etenders.kerala.gov.in/app?page=FrontEndTenderDetails&service=page&tnid=2024_LSGD_890123_1",
+  "parser_version": "1.0.0"
+}

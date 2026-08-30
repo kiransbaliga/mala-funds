@@ -1,0 +1,15 @@
+{
+  "raw_payload": {
+    "meeting_id": "SAK_MALA_2024_M05",
+    "local_body": "Mala Grama Panchayat",
+    "meeting_date": "2024-05-18",
+    "resolution_no": "Res. No. 21/2024",
+    "project_reference": "Upgradation of Ramavilasam LP School Smart Classroom and Dining Hall",
+    "decision": "Panchayat committee accepted proposal for smart classroom infrastructure at Ramavilasam LPS under Kodungallur LAC-ADS fund allocation.",
+    "source_url": "https://sakarma.lsgkerala.gov.in/Decisions/ViewResolution?mid=SAK_MALA_2024_M05&rno=21"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.597830Z",
+  "source_system": "sakarma",
+  "source_url": "https://sakarma.lsgkerala.gov.in/Decisions/ViewResolution?mid=SAK_MALA_2024_M05&rno=21",
+  "parser_version": "1.0.0"
+}

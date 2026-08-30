@@ -1,0 +1,27 @@
+{
+  "raw_payload": {
+    "tender_id": "2023_LSGD_502190_1",
+    "tender_reference": "T-02/AE/MALA/2023-24",
+    "title": "MLA SDF - Installation of Rooftop Solar Power Plant at Mala Block Panchayat Office",
+    "work_description": "Design, supply, installation and grid-synchronization of 20kW on-grid solar photovoltaic power plant.",
+    "financial_year": "2023-24",
+    "scheme_raw": "MLA Special Development Fund (MLA SDF)",
+    "estimated_value": 1600000.0,
+    "tender_value": 1540000.0,
+    "published_date": "2023-05-18",
+    "bid_opening_date": "2023-05-28",
+    "award_date": "2023-06-15",
+    "contractor": "Anert Authorized Solar EPC Services",
+    "status": "Awarded",
+    "department": "Local Self Government Department",
+    "division": "LSGD Sub Division Mala",
+    "source_url": "https://etenders.kerala.gov.in/app?page=FrontEndTenderDetails&service=page&tnid=2023_LSGD_502190_1",
+    "nit_url": "https://etenders.kerala.gov.in/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&sp=Sp4419",
+    "boq_url": "https://etenders.kerala.gov.in/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&sp=Sboq441",
+    "category": "Public Buildings"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.594618Z",
+  "source_system": "etender",
+  "source_url": "https://etenders.kerala.gov.in/app?page=FrontEndTenderDetails&service=page&tnid=2023_LSGD_502190_1",
+  "parser_version": "1.0.0"
+}

@@ -1,0 +1,15 @@
+{
+  "raw_payload": {
+    "meeting_id": "SAK_PUTH_2023_M11",
+    "local_body": "Puthenchira Grama Panchayat",
+    "meeting_date": "2023-10-28",
+    "resolution_no": "Res. No. 19/2023",
+    "project_reference": "Construction of Open Gymnasium & Kids Park at Kombathukadavu",
+    "decision": "Allotted panchayat ground at Kombathukadavu for public open gym and children recreational park under LAC-ADS.",
+    "source_url": "https://sakarma.lsgkerala.gov.in/Decisions/ViewResolution?mid=SAK_PUTH_2023_M11&rno=19"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.597830Z",
+  "source_system": "sakarma",
+  "source_url": "https://sakarma.lsgkerala.gov.in/Decisions/ViewResolution?mid=SAK_PUTH_2023_M11&rno=19",
+  "parser_version": "1.0.0"
+}

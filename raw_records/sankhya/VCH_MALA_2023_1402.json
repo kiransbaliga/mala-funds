@@ -1,0 +1,19 @@
+{
+  "raw_payload": {
+    "voucher_no": "VCH/MALA/2023/1402",
+    "bill_reference": "CB-99/LSGD-MALA/2023",
+    "project_reference": "Modernization of Mala Community Health Centre / Taluk Hospital Casualty Waiting Area",
+    "payee_name": "V.T. Poulose Contractors",
+    "transaction_date": "2023-12-19",
+    "amount": 2435000.0,
+    "cumulative_amount": 2435000.0,
+    "payment_status": "Paid",
+    "treasury_reference": "UTR/TREAS/IRINJ/2023/442981",
+    "head_of_account": "8443-00-108-97 LAC-ADS Hospital Infra",
+    "source_url": "https://saankhya.lsgkerala.gov.in/Voucher/Details?vno=VCH_MALA_2023_1402"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.598912Z",
+  "source_system": "saankhya",
+  "source_url": "https://saankhya.lsgkerala.gov.in/Voucher/Details?vno=VCH_MALA_2023_1402",
+  "parser_version": "1.0.0"
+}

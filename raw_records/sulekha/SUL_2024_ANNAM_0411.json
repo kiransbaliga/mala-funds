@@ -1,0 +1,25 @@
+{
+  "raw_payload": {
+    "project_code": "SUL_2024_ANNAM_0411",
+    "project_name": "Reconstruction of Kundoor River Bund Protection Wall in Annamanada GP",
+    "financial_year": "2024-25",
+    "scheme_name": "MLA-SDF 2024-25",
+    "sector": "Flood Mitigation & Irrigation",
+    "local_body": "Annamanada Grama Panchayat",
+    "implementing_agency": "Assistant Engineer, LID & EW Annamanada",
+    "as_number": "GO(Rt) No. 711/2024/LSGD",
+    "as_date": "2024-07-28",
+    "ts_number": "TS/AE/ANNAM/12/2024",
+    "ts_date": "2024-09-10",
+    "sanctioned_amount": 1400000.0,
+    "planned_amount": 1400000.0,
+    "expenditure_reported": null,
+    "status": "Awarded",
+    "source_url": "https://sulekha.lsgkerala.gov.in/Report/ProjectDetails?id=SUL_2024_ANNAM_0411",
+    "category": "Public Works"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.596663Z",
+  "source_system": "sulekha",
+  "source_url": "https://sulekha.lsgkerala.gov.in/Report/ProjectDetails?id=SUL_2024_ANNAM_0411",
+  "parser_version": "1.0.0"
+}

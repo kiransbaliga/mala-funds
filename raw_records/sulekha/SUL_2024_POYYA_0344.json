@@ -1,0 +1,25 @@
+{
+  "raw_payload": {
+    "project_code": "SUL_2024_POYYA_0344",
+    "project_name": "Madathumpady Anganwadi Building Construction Poyya GP Ward 6",
+    "financial_year": "2024-25",
+    "scheme_name": "LAC-ADS Kodungallur LAC",
+    "sector": "Women & Child Development",
+    "local_body": "Poyya Grama Panchayat",
+    "implementing_agency": "Assistant Engineer, LID & EW Poyya",
+    "as_number": "GO(Rt) No. 680/2024/LSGD",
+    "as_date": "2024-07-12",
+    "ts_number": "TS/AE/POYYA/19/2024",
+    "ts_date": "2024-08-25",
+    "sanctioned_amount": 1400000.0,
+    "planned_amount": 1400000.0,
+    "expenditure_reported": null,
+    "status": "In Progress",
+    "source_url": "https://sulekha.lsgkerala.gov.in/Report/ProjectDetails?id=SUL_2024_POYYA_0344",
+    "category": "Anganwadis"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.596663Z",
+  "source_system": "sulekha",
+  "source_url": "https://sulekha.lsgkerala.gov.in/Report/ProjectDetails?id=SUL_2024_POYYA_0344",
+  "parser_version": "1.0.0"
+}

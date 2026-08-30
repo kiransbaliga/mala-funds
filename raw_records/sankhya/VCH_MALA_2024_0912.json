@@ -1,0 +1,19 @@
+{
+  "raw_payload": {
+    "voucher_no": "VCH/MALA/2024/0912",
+    "bill_reference": "CB-44/LSGD/2024",
+    "project_reference": "Improvements to Vattakkotta Anganawady Road - Ward 1 (LAC-ADS)",
+    "payee_name": "K.R. Mohanan & Co, Contractor",
+    "transaction_date": "2024-08-28",
+    "amount": 584200.0,
+    "cumulative_amount": 584200.0,
+    "payment_status": "Paid",
+    "treasury_reference": "UTR/TREAS/IRINJ/2024/889104",
+    "head_of_account": "8443-00-108-97 LAC-ADS Development Works",
+    "source_url": "https://saankhya.lsgkerala.gov.in/Voucher/Details?vno=VCH_MALA_2024_0912"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.598912Z",
+  "source_system": "saankhya",
+  "source_url": "https://saankhya.lsgkerala.gov.in/Voucher/Details?vno=VCH_MALA_2024_0912",
+  "parser_version": "1.0.0"
+}

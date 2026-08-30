@@ -1,0 +1,25 @@
+{
+  "raw_payload": {
+    "project_code": "SUL_2024_MALA_0992",
+    "project_name": "Comprehensive Drainage & Culvert System for Mala Town Market Junction",
+    "financial_year": "2024-25",
+    "scheme_name": "LAC-ADS 2024-25",
+    "sector": "Drainage & Urban Infrastructure",
+    "local_body": "Mala Grama Panchayat",
+    "implementing_agency": "Executive Engineer, LSGD Division Thrissur",
+    "as_number": "GO(Rt) No. 912/2024/LSGD",
+    "as_date": "2024-09-30",
+    "ts_number": "TS/EE/LSGD/TSR/95/2024",
+    "ts_date": "2024-11-05",
+    "sanctioned_amount": 3500000.0,
+    "planned_amount": 3500000.0,
+    "expenditure_reported": null,
+    "status": "In Progress",
+    "source_url": "https://sulekha.lsgkerala.gov.in/Report/ProjectDetails?id=SUL_2024_MALA_0992",
+    "category": "Roads"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.596663Z",
+  "source_system": "sulekha",
+  "source_url": "https://sulekha.lsgkerala.gov.in/Report/ProjectDetails?id=SUL_2024_MALA_0992",
+  "parser_version": "1.0.0"
+}

@@ -1,0 +1,19 @@
+{
+  "raw_payload": {
+    "voucher_no": "VCH/PUTH/2024/0114",
+    "bill_reference": "CB-08/LSGD-PUTH/2024",
+    "project_reference": "Construction of Open Gymnasium & Kids Park at Kombathukadavu",
+    "payee_name": "Green Park Infrastructure Kerala",
+    "transaction_date": "2024-02-15",
+    "amount": 1060000.0,
+    "cumulative_amount": 1060000.0,
+    "payment_status": "Paid",
+    "treasury_reference": "UTR/TREAS/IRINJ/2024/220914",
+    "head_of_account": "8443-00-108-97 LAC-ADS Sports Infra",
+    "source_url": "https://saankhya.lsgkerala.gov.in/Voucher/Details?vno=VCH_PUTH_2024_0114"
+  },
+  "retrieved_at": "2026-08-30T13:55:31.598912Z",
+  "source_system": "saankhya",
+  "source_url": "https://saankhya.lsgkerala.gov.in/Voucher/Details?vno=VCH_PUTH_2024_0114",
+  "parser_version": "1.0.0"
+}
