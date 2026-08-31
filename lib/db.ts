@@ -2,7 +2,7 @@ import { MongoClient, Db } from 'mongodb';
 import fs from 'fs';
 import path from 'path';
 
-const MONGODB_URI = process.env.MONGODB_URI || process.env.DATABASE_URL || 'mongodb+srv://kiransbaliga_db_user:Zn1zz0G6eYk7dscC@cluster0.ha5ofnz.mongodb.net/mala_funds?retryWrites=true&w=majority&appName=Cluster0';
+const MONGODB_URI = process.env.MONGODB_URI || process.env.DATABASE_URL;
 
 // Global caching for Vercel serverless environments
 declare global {
@@ -12,7 +12,11 @@ declare global {
 
 let clientPromise: Promise<MongoClient> | null = null;
 
-export function getMongoClientPromise(): Promise<MongoClient> {
+export function getMongoClientPromise(): Promise<MongoClient> | null {
+  if (!MONGODB_URI) {
+    return null;
+  }
+
   if (process.env.NODE_ENV === 'development') {
     if (!global._mongoClientPromise) {
       const client = new MongoClient(MONGODB_URI, {
@@ -40,7 +44,9 @@ export function getMongoClientPromise(): Promise<MongoClient> {
 
 export async function getMongoDb(): Promise<Db | null> {
   try {
-    const client = await getMongoClientPromise();
+    const promise = getMongoClientPromise();
+    if (!promise) return null;
+    const client = await promise;
     return client.db('mala_funds');
   } catch (error) {
     console.warn('[MongoDB Warning] Could not connect to MongoDB Atlas:', error);

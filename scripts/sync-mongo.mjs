@@ -2,9 +2,29 @@ import { MongoClient } from 'mongodb';
 import fs from 'fs';
 import path from 'path';
 
-const MONGODB_URI = process.env.MONGODB_URI || process.env.DATABASE_URL || "mongodb+srv://kiransbaliga_db_user:Zn1zz0G6eYk7dscC@cluster0.ha5ofnz.mongodb.net/mala_funds?retryWrites=true&w=majority&appName=Cluster0";
+// Parse .env if present
+const envPath = path.join(process.cwd(), '.env');
+if (fs.existsSync(envPath)) {
+  const envContent = fs.readFileSync(envPath, 'utf-8');
+  for (const line of envContent.split('\n')) {
+    const trimmed = line.trim();
+    if (trimmed && !trimmed.startsWith('#') && trimmed.includes('=')) {
+      const [key, ...vals] = trimmed.split('=');
+      const val = vals.join('=').replace(/^["']|["']$/g, '');
+      if (!process.env[key.trim()]) {
+        process.env[key.trim()] = val;
+      }
+    }
+  }
+}
+
+const MONGODB_URI = process.env.MONGODB_URI || process.env.DATABASE_URL;
 
 async function sync() {
+  if (!MONGODB_URI) {
+    console.error('Error: MONGODB_URI is not set in environment or .env file.');
+    process.exit(1);
+  }
   const jsonPath = path.join(process.cwd(), 'data', 'resolved_projects.json');
   if (!fs.existsSync(jsonPath)) {
     console.error(`Missing ${jsonPath}`);
